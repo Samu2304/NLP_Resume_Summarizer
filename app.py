@@ -3,6 +3,12 @@ import spacy
 import pdfplumber
 import re
 import json
+try:
+    nlp = spacy.load("en_core_web_sm")
+except OSError:
+    with st.spinner("Downloading spaCy model..."):
+        subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
+    nlp = spacy.load("en_core_web_sm")
 
 # Load spaCy model
 nlp = spacy.load("en_core_web_sm")
